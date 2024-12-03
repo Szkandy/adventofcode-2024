@@ -7,19 +7,23 @@ import (
 	"strings"
 )
 
-func LoadFile(path string) (lines []string) {
+func LoadFile(path string) (content string) {
 	file, err := os.ReadFile(path)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
 	}
 
-	lines = strings.Split(string(file), "\n")
+	return string(file)
+}
+
+func LoadFileRows(path string) (lines []string) {
+	lines = strings.Split(LoadFile(path), "\n")
 	return
 }
 
 func LoadFileIntRows(path string) (rows [][]int) {
-	lines := LoadFile(path)
+	lines := LoadFileRows(path)
 
 	rows = [][]int{}
 

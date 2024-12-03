@@ -34,7 +34,7 @@ func pt2(arr1, arr2 []int) {
 }
 
 func LoadFile() (arr1 []int, arr2 []int) {
-	lines := shared.LoadFile("./input.txt")
+	lines := shared.LoadFileRows("./input.txt")
 
 	arr1 = []int{}
 	arr2 = []int{}
