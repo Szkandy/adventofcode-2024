@@ -80,7 +80,7 @@ func pt2(rows [][]int) {
 }
 
 func main() {
-	reports := shared.LoadFileIntRows("./input.txt")
+	reports := shared.LoadFileIntMatrix("./input.txt")
 
 	pt1(reports)
 	pt2(reports)
