@@ -3,7 +3,6 @@ package shared
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -62,20 +61,23 @@ func LoadFileStringMatrix(path string) (rows [][]string) {
 	return
 }
 
-func ToInt(s string) int {
-	i, _ := strconv.Atoi(s)
-	return i
-}
+func LoadFileStringMatrixStruct(path string) (matrix Matrix) {
+	lines := LoadFileRows(path)
 
-func Abs(n int) int {
-	if n < 0 {
-		return -n
+	coordinates := []Coord{}
+	rows := [][]string{}
+
+	for y, line := range lines {
+		if line == "" {
+			continue
+		}
+
+		row := strings.Split(line, "")
+		rows = append(rows, row)
+		for x := range row {
+			coordinates = append(coordinates, Coord{X: x, Y: y})
+		}
 	}
-	return n
-}
 
-func WithoutIndex(s []int, index int) []int {
-	var dst []int
-	dst = append(dst, s[:index]...)
-	return append(dst, s[index+1:]...)
+	return Matrix{Rows: rows, Coords: coordinates}
 }
