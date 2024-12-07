@@ -31,6 +31,7 @@ func LoadFileIntMatrix(path string) (rows [][]int) {
 			continue
 		}
 
+		line = strings.ReplaceAll(line, ":", "")
 		parts := strings.Split(line, " ")
 
 		row := []int{}
