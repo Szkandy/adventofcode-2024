@@ -8,10 +8,10 @@ import (
 
 type MatrixWalker struct {
 	shared.Matrix
-	Position   shared.Coord
-	Direction  shared.Coord
-	Path       []shared.Coord
-	Directions []shared.Coord
+	Position   shared.Point
+	Direction  shared.Point
+	Path       []shared.Point
+	Directions []shared.Point
 }
 
 func newMatrixWalker(guardMap shared.Matrix) MatrixWalker {
@@ -20,21 +20,21 @@ func newMatrixWalker(guardMap shared.Matrix) MatrixWalker {
 	return MatrixWalker{
 		Matrix:     guardMap,
 		Position:   position,
-		Direction:  shared.Coord{X: 0, Y: -1},
-		Path:       []shared.Coord{position},
-		Directions: []shared.Coord{{X: 0, Y: -1}},
+		Direction:  shared.Point{X: 0, Y: -1},
+		Path:       []shared.Point{position},
+		Directions: []shared.Point{{X: 0, Y: -1}},
 	}
 }
 
 func (m *MatrixWalker) Reset() {
 	m.Position = m.FindValue("^")[0]
-	m.Direction = shared.Coord{X: 0, Y: -1}
-	m.Path = []shared.Coord{m.Position}
-	m.Directions = []shared.Coord{{X: 0, Y: -1}}
+	m.Direction = shared.Point{X: 0, Y: -1}
+	m.Path = []shared.Point{m.Position}
+	m.Directions = []shared.Point{{X: 0, Y: -1}}
 }
 
-func (m *MatrixWalker) GetDistinctPath() []shared.Coord {
-	distinctPath := []shared.Coord{}
+func (m *MatrixWalker) GetDistinctPath() []shared.Point {
+	distinctPath := []shared.Point{}
 
 	for _, coord := range m.Path {
 		found := false
@@ -66,13 +66,13 @@ func (m *MatrixWalker) WasVisited() bool {
 
 func (m *MatrixWalker) GetCharByDirection() string {
 	switch m.Direction {
-	case shared.Coord{X: 0, Y: -1}:
+	case shared.Point{X: 0, Y: -1}:
 		return "^"
-	case shared.Coord{X: 1, Y: 0}:
+	case shared.Point{X: 1, Y: 0}:
 		return ">"
-	case shared.Coord{X: 0, Y: 1}:
+	case shared.Point{X: 0, Y: 1}:
 		return "v"
-	case shared.Coord{X: -1, Y: 0}:
+	case shared.Point{X: -1, Y: 0}:
 		return "<"
 	}
 
@@ -81,14 +81,14 @@ func (m *MatrixWalker) GetCharByDirection() string {
 
 func (m *MatrixWalker) RotateRight() {
 	switch m.Direction {
-	case shared.Coord{X: 0, Y: -1}:
-		m.Direction = shared.Coord{X: 1, Y: 0}
-	case shared.Coord{X: 1, Y: 0}:
-		m.Direction = shared.Coord{X: 0, Y: 1}
-	case shared.Coord{X: 0, Y: 1}:
-		m.Direction = shared.Coord{X: -1, Y: 0}
-	case shared.Coord{X: -1, Y: 0}:
-		m.Direction = shared.Coord{X: 0, Y: -1}
+	case shared.Point{X: 0, Y: -1}:
+		m.Direction = shared.Point{X: 1, Y: 0}
+	case shared.Point{X: 1, Y: 0}:
+		m.Direction = shared.Point{X: 0, Y: 1}
+	case shared.Point{X: 0, Y: 1}:
+		m.Direction = shared.Point{X: -1, Y: 0}
+	case shared.Point{X: -1, Y: 0}:
+		m.Direction = shared.Point{X: 0, Y: -1}
 	}
 }
 
