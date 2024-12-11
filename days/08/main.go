@@ -5,7 +5,7 @@ import (
 	"szkandy/adventofcode-2024/shared"
 )
 
-func findAllAntennasGroups(m shared.Matrix) map[string][]shared.Point {
+func findAllAntennasGroups(m shared.Matrix[string]) map[string][]shared.Point {
 	antennas := make(map[string][]shared.Point)
 
 	for y, row := range m.Rows {
@@ -21,7 +21,7 @@ func findAllAntennasGroups(m shared.Matrix) map[string][]shared.Point {
 	return antennas
 }
 
-func getAntiNodes(m shared.Matrix, p1 shared.Point, p2 shared.Point, unlimitedDistance bool) []shared.Point {
+func getAntiNodes(m shared.Matrix[string], p1 shared.Point, p2 shared.Point, unlimitedDistance bool) []shared.Point {
 	antiNodes := make([]shared.Point, 0)
 	distance := p1.Subtract(p2)
 
@@ -54,7 +54,7 @@ func getAntiNodes(m shared.Matrix, p1 shared.Point, p2 shared.Point, unlimitedDi
 	return antiNodes
 }
 
-func getAntiNodesForGroup(m shared.Matrix, group []shared.Point, unlimitedDistance bool) []shared.Point {
+func getAntiNodesForGroup(m shared.Matrix[string], group []shared.Point, unlimitedDistance bool) []shared.Point {
 	antiNodes := make([]shared.Point, 0)
 
 	for i, p1 := range group {
@@ -84,7 +84,7 @@ func getDistinctPoints(points []shared.Point) []shared.Point {
 	return distinctPoints
 }
 
-func pt1(m shared.Matrix) {
+func pt1(m shared.Matrix[string]) {
 	groups := findAllAntennasGroups(m)
 
 	antiNodes := make([]shared.Point, 0)
@@ -99,7 +99,7 @@ func pt1(m shared.Matrix) {
 	fmt.Println("Part 1: ", len(antiNodes))
 }
 
-func pt2(m shared.Matrix) {
+func pt2(m shared.Matrix[string]) {
 	groups := findAllAntennasGroups(m)
 
 	antiNodes := make([]shared.Point, 0)

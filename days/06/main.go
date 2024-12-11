@@ -7,14 +7,14 @@ import (
 )
 
 type MatrixWalker struct {
-	shared.Matrix
+	shared.Matrix[string]
 	Position   shared.Point
 	Direction  shared.Point
 	Path       []shared.Point
 	Directions []shared.Point
 }
 
-func newMatrixWalker(guardMap shared.Matrix) MatrixWalker {
+func newMatrixWalker(guardMap shared.Matrix[string]) MatrixWalker {
 	position := guardMap.FindValue("^")[0]
 
 	return MatrixWalker{

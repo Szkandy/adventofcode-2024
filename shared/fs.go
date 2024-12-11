@@ -73,7 +73,7 @@ func LoadFileStringMatrix(path string) (rows [][]string) {
 	return
 }
 
-func LoadFileStringMatrixStruct(path string) (matrix Matrix) {
+func LoadFileStringMatrixStruct(path string) (matrix Matrix[string]) {
 	lines := LoadFileRows(path)
 
 	coordinates := []Point{}
@@ -91,5 +91,30 @@ func LoadFileStringMatrixStruct(path string) (matrix Matrix) {
 		}
 	}
 
-	return Matrix{Rows: rows, Coords: coordinates}
+	return Matrix[string]{Rows: rows, Coords: coordinates}
+}
+
+func LoadFileIntMatrixStruct(path string) (matrix Matrix[int]) {
+	lines := LoadFileRows(path)
+
+	coordinates := []Point{}
+	rows := [][]int{}
+
+	for y, line := range lines {
+		if line == "" {
+			continue
+		}
+
+		line := strings.Split(line, "")
+
+		row := []int{}
+		for x, part := range line {
+			row = append(row, ToInt(part))
+			coordinates = append(coordinates, Point{X: x, Y: y})
+		}
+
+		rows = append(rows, row)
+	}
+
+	return Matrix[int]{Rows: rows, Coords: coordinates}
 }
