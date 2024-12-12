@@ -65,3 +65,28 @@ func (c Point) West() Point {
 		Y: c.Y,
 	}
 }
+
+func (c Point) NorthEast() Point {
+	return c.North().East()
+}
+
+func (c Point) NorthWest() Point {
+	return c.North().West()
+}
+
+func (c Point) SouthEast() Point {
+	return c.South().East()
+}
+
+func (c Point) SouthWest() Point {
+	return c.South().West()
+}
+
+func (c Point) Neighbors() []Point {
+	return []Point{
+		c.North(),
+		c.South(),
+		c.East(),
+		c.West(),
+	}
+}
