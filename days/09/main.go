@@ -129,12 +129,12 @@ func pt2(diskMap []int) {
 }
 
 func main() {
-	diskMap := shared.LoadFileIntRow("./input.txt")
+	diskMap := shared.LoadFileIntRow("./input.txt", "")
 	diskMap = expand(diskMap)
 
 	pt1(diskMap)
 
-	diskMap = shared.LoadFileIntRow("./input.txt")
+	diskMap = shared.LoadFileIntRow("./input.txt", "")
 	diskMap = expand(diskMap)
 	pt2(diskMap)
 }

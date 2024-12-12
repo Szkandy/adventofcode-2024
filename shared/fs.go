@@ -45,9 +45,9 @@ func LoadFileIntMatrix(path string) (rows [][]int) {
 	return
 }
 
-func LoadFileIntRow(path string) (row []int) {
+func LoadFileIntRow(path string, separator string) (row []int) {
 	line := LoadFileRows(path)[0]
-	parts := strings.Split(line, "")
+	parts := strings.Split(line, separator)
 
 	for _, part := range parts {
 		row = append(row, ToInt(part))

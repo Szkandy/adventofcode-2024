@@ -12,3 +12,7 @@ func Abs(n int) int {
 func ToString(i int) string {
 	return strconv.Itoa(i)
 }
+
+func Length(i int) int {
+	return len(ToString(i))
+}
